@@ -6,7 +6,6 @@
 body{
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
 }
@@ -38,8 +37,10 @@ body{
 }
 
 #player2wrap{
+    margin-top: 35vh;
     width: 50vw; 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -63,7 +64,7 @@ body{
 }
 
 #bottom{
-    margin-top: 10vh;
+    margin-top: 15vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,5 +85,17 @@ button{
 }
 
 button:hover{
-    transform: scale(1.1);
+    transform: scale(0.9);
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    transform: none;
+}
+
+#roll{
+    margin-right: auto;
 }

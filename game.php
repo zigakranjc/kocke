@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+$roll_count = $_SESSION['roll_count'] ?? 1;
+$round = $_SESSION['round'] ?? 0;
 function h(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 
 // reset
@@ -11,116 +12,127 @@ if (($_POST['action'] ?? '') === 'reset') {
   exit;
 }
 
-// init from index submit (player names + roll_count)
+// če so playeri in število metov nastavljeni, se ustvari session
 if (isset($_POST['player1'], $_POST['player2'], $_POST['player3'], $_POST['roll_count'])) {
   $_SESSION['player1'] = (string)$_POST['player1'];
   $_SESSION['player2'] = (string)$_POST['player2'];
   $_SESSION['player3'] = (string)$_POST['player3'];
 
-  $roll_count = (int)$_POST['roll_count'];
-  if ($roll_count < 1) $roll_count = 1;
-  if ($roll_count > 3) $roll_count = 3;
-  $_SESSION['roll_count'] = $roll_count;
+  $roll_count = (int)$_POST['roll_count']; //pobere število metov iz forme in jih pretvori v int
+  $_SESSION['roll_count'] = $roll_count; // število metov da v session
 
-  $_SESSION['round'] = 0;
-  $_SESSION['rolls'] = [[], [], []];
-  $_SESSION['sumTab'] = [0, 0, 0];
+  $_SESSION['round'] = 0; 
+  $_SESSION['rolls'] = [[], [], []]; //igralci in njihovi meti
+  $_SESSION['sumTab'] = [0, 0, 0]; //vsota točk
 }
 
 $players = [
-  $_SESSION['player1'] ?? '',
-  $_SESSION['player2'] ?? '',
-  $_SESSION['player3'] ?? '',
+  $_SESSION['player1'],
+  $_SESSION['player2'],
+  $_SESSION['player3'],
 ];
 
-$roll_count = (int)($_SESSION['roll_count'] ?? 1);
-if ($roll_count < 1) $roll_count = 1;
-if ($roll_count > 3) $roll_count = 3;
-$_SESSION['roll_count'] = $roll_count;
+$done = $round >= $roll_count; //preveri če je igra končana
 
-if (!isset($_SESSION['round'])) $_SESSION['round'] = 0;
-if (!isset($_SESSION['rolls'])) $_SESSION['rolls'] = [[], [], []];
-if (!isset($_SESSION['sumTab'])) $_SESSION['sumTab'] = [0, 0, 0];
+// met kocke
+$roll_dice = false;
 
-$round = (int)$_SESSION['round'];
-$done = $round >= $roll_count;
-
-// 1 click = all 3 roll once (one round)
-$want_roll = false;
-
-// first arrival from index (no action field) -> treat as first roll
+// avtomatsko vrzi prvi met ko igralec prvič pride v igro
 if (isset($_POST['player1'], $_POST['player2'], $_POST['player3'], $_POST['roll_count']) && !isset($_POST['action'])) {
-  $want_roll = true;
+  $roll_dice = true;
 }
 
-// subsequent clicks on this page
+// ko kliknemo roll se kocke vržejo; ?? '' - ker za prvi roll ne kliknemo gumba to naredi, da se vržejo tudi brez action
 if (($_POST['action'] ?? '') === 'roll') {
-  $want_roll = true;
+  $roll_dice = true;
 }
 
-if ($want_roll && !$done) {
+// če je met krogle in igra ni končana gremo skozi tabelo igralcev in za vsakega dobimo random stevilo, ga shranimo v session in povečamo vsoto točk. Povečamo še število rund in potem ponastavimo spremenljivke
+if ($roll_dice && !$done) {
   for ($i = 0; $i < 3; $i++) {
     $roll = random_int(1, 6);
     $_SESSION['rolls'][$i][$round] = $roll;
     $_SESSION['sumTab'][$i] += $roll;
   }
-  $_SESSION['round'] = $round + 1;
+  $_SESSION['round']++;
 
-  $round = (int)$_SESSION['round'];
-  $done = $round >= $roll_count;
+  $round = (int)($_SESSION['round'] ?? 0);
+    $roll_count = (int)($_SESSION['roll_count'] ?? 1);
+
+    $done = $round >= $roll_count;
 }
 
-$last = $round - 1;
+$round = $_SESSION['round'] ?? 0;
+$last = ($_SESSION['round'] ?? 0) - 1;
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <title>Kocke</title>
-    <link rel="stylesheet" href="style/styleIndex.css">
+    <link rel="stylesheet" href="style/styleGame.css">
   </head>
   <body>
     <div id="main">
         <div id="table">
             <div id="player1">
-            <div><?php echo h($players[0] !== '' ? $players[0] : 'Igralec 1'); ?></div>
-            <?php if ($last >= 0): $r = (int)($_SESSION['rolls'][0][$last] ?? 0); ?>
-                <?php if ($r): ?><img src="img/dice<?php echo $r; ?>.gif" alt="dice <?php echo $r; ?>"><?php endif; ?>
-            <?php endif; ?>
-            <div>Vsota: <?php echo (int)($_SESSION['sumTab'][0] ?? 0); ?></div>
+                <div>
+                    <?php echo h($players[0] !== '' ? $players[0] : 'Igralec 1'); ?>
+                </div>
+                <div>
+                    Vsota: <?php echo (int)($_SESSION['sumTab'][0] ?? 0); ?>
+                </div>
+            </div>
+            <div>
+                 <?php if ($last >= 0): $zadnji_met = $_SESSION['rolls'][0][$round - 1] ?? 0; ?>
+                <?php if ($zadnji_met): ?><img src="img/dice<?php echo $zadnji_met; ?>.gif" alt="dice <?php echo $zadnji_met; ?>"><?php endif; ?>
+                <?php endif; ?>
             </div>
 
             <div id="player2wrap">
-            <div id="player2">
-                <div><?php echo h($players[1] !== '' ? $players[1] : 'Igralec 2'); ?></div>
-                <?php if ($last >= 0): $r = (int)($_SESSION['rolls'][1][$last] ?? 0); ?>
-                <?php if ($r): ?><img src="img/dice<?php echo $r; ?>.gif" alt="dice <?php echo $r; ?>"><?php endif; ?>
+                <div>
+                    <?php if ($last >= 0): $zadnji_met = $_SESSION['rolls'][1][$round - 1] ?? 0; ?>
+                    <?php if ($zadnji_met): ?><img src="img/dice<?php echo $zadnji_met; ?>.gif" alt="dice <?php echo $zadnji_met; ?>"><?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                <div id="player2">
+                    <div>
+                        <?php echo h($players[1] !== '' ? $players[1] : 'Igralec 2'); ?>
+                    </div>
+                    <div>
+                        Vsota: <?php echo (int)($_SESSION['sumTab'][1] ?? 0); ?>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div>
+                <?php if ($last >= 0): $zadnji_met = $_SESSION['rolls'][2][$round - 1] ?? 0; ?>
+                <?php if ($zadnji_met): ?><img src="img/dice<?php echo $zadnji_met; ?>.gif" alt="dice <?php echo $zadnji_met; ?>"><?php endif; ?>
                 <?php endif; ?>
-                <div>Vsota: <?php echo (int)($_SESSION['sumTab'][1] ?? 0); ?></div>
             </div>
-            </div>
-
             <div id="player3">
-            <div><?php echo h($players[2] !== '' ? $players[2] : 'Igralec 3'); ?></div>
-            <?php if ($last >= 0): $r = (int)($_SESSION['rolls'][2][$last] ?? 0); ?>
-                <?php if ($r): ?><img src="img/dice<?php echo $r; ?>.gif" alt="dice <?php echo $r; ?>"><?php endif; ?>
-            <?php endif; ?>
-            <div>Vsota: <?php echo (int)($_SESSION['sumTab'][2] ?? 0); ?></div>
+                <div>
+                    <?php echo h($players[2] !== '' ? $players[2] : 'Igralec 3'); ?>
+                </div>
+                <div>
+                    Vsota: <?php echo (int)($_SESSION['sumTab'][2] ?? 0); ?>
+                </div>
             </div>
         </div>
 
         <div id="bottom">
             <div id="roll">
-            Met: <?php echo $round; ?> / <?php echo $roll_count; ?>
+            Roll: <?php echo $round; ?> / <?php echo $roll_count; ?>
             </div>
 
             <div>
-            <form method="post" action="game.php" style="display:inline;">
-                <button type="submit" name="action" value="roll" <?php echo $done ? 'disabled' : ''; ?>>Vrzi</button>
-            </form>
+                <form method="post" action="game.php" style="display:inline;">
+                    <button type="submit" name="action" value="roll" <?php echo $done ? 'disabled' : ''?>>ROLL</button>     
+                </form>
 
-            <form method="post" action="game.php" style="display:inline;">
-                <button type="submit" name="action" value="reset">Nova igra</button>
-            </form>
+                <form method="post" action="result.php" style="display:inline;">
+                    <button type="submit" name="action" value="reset">RESULTS</button>
+                </form>
             </div>
         </div> <!-- konec #bottom -->
     </div> <!-- konec #main -->

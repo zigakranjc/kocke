@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#main{
+    height: 10vh;
+    margin-top: 30vh;
+    width: 30vw;
+}
+
+img{
+    width: 30vw;
+    margin-top: -15vh;
+}
+
+#players{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -20vh;
+    height: 10vh;
+    gap: 7vw;
+}
+
+#second{
+    z-index: 1;
+    position: relative;
+    top: 3vh;
+    font-weight: bold;
+}
+
+#first{
+    z-index: 1;
+    position: relative;
+    bottom: 2vh;
+    font-weight: bold;
+}
+
+#third{
+    z-index: 1;
+    position: relative;
+    top: 7vh;
+    font-weight: bold;
+}
