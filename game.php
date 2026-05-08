@@ -24,6 +24,10 @@ if (isset($_POST['player1'], $_POST['player2'], $_POST['player3'], $_POST['roll_
   $_SESSION['round'] = 0; 
   $_SESSION['rolls'] = [[], [], []]; //igralci in njihovi meti
   $_SESSION['sumTab'] = [0, 0, 0]; //vsota točk
+
+  // ko se začne nova igra resetiraš te dve spremenljivki
+  $round = 0;
+  $done = false;
 }
 
 $players = [
@@ -83,14 +87,14 @@ $last = ($_SESSION['round'] ?? 0) - 1;
                 </div>
             </div>
             <div>
-                 <?php if ($last >= 0): $zadnji_met = $_SESSION['rolls'][0][$round - 1] ?? 0; ?>
+                 <?php if ($last >= 0): $zadnji_met = $_SESSION['rolls'][0][$last] ?? 0; ?>
                 <?php if ($zadnji_met): ?><img src="img/dice<?php echo $zadnji_met; ?>.gif" alt="dice <?php echo $zadnji_met; ?>"><?php endif; ?>
                 <?php endif; ?>
             </div>
 
             <div id="player2wrap">
                 <div>
-                    <?php if ($last >= 0): $zadnji_met = $_SESSION['rolls'][1][$round - 1] ?? 0; ?>
+                    <?php if ($last >= 0): $zadnji_met = $_SESSION['rolls'][1][$last] ?? 0; ?>
                     <?php if ($zadnji_met): ?><img src="img/dice<?php echo $zadnji_met; ?>.gif" alt="dice <?php echo $zadnji_met; ?>"><?php endif; ?>
                     <?php endif; ?>
                 </div>
@@ -106,7 +110,7 @@ $last = ($_SESSION['round'] ?? 0) - 1;
             </div>
             
             <div>
-                <?php if ($last >= 0): $zadnji_met = $_SESSION['rolls'][2][$round - 1] ?? 0; ?>
+                <?php if ($last >= 0): $zadnji_met = $_SESSION['rolls'][2][$last] ?? 0; ?>
                 <?php if ($zadnji_met): ?><img src="img/dice<?php echo $zadnji_met; ?>.gif" alt="dice <?php echo $zadnji_met; ?>"><?php endif; ?>
                 <?php endif; ?>
             </div>

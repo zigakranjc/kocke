@@ -9,7 +9,7 @@
             <form method="post" action="game.php">
                 <div id="table">
                     <div id = "player1"><label>Igralec 1: <input type="text" name="player1" class="small_input" required></label></div>
-                    <div id="player2wrap"><div id = "player2"><label>Igralec 2: <br /><input type="text" name="player2" class="small_input" required></label></div></div>
+                    <div id="player2wrap"><div id = "player2"><label>Igralec 2:<input type="text" name="player2" class="small_input" required></label></div></div>
                     <div id = "player3"><label>Igralec 3: <input type="text" name="player3" class="small_input" required></label></div>
                 </div>    
 

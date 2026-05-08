@@ -20,6 +20,7 @@ body{
     margin-top: 10%;
     background-image: url(../img/table.png);
     background-position: center;
+    background-size: cover;
     border: 2px solid;
     height: 40vh;
     width: 40vw;
@@ -29,6 +30,9 @@ body{
 }
 
 #player1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 2px solid;
     width: 10vw;
     height: 15vh; 
@@ -44,6 +48,9 @@ body{
 }
 
 #player2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 2px solid;
     width: 6vw;
     height: 15vh; 
@@ -51,6 +58,9 @@ body{
 }
 
 #player3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 2px solid;
     width: 10vw;
     height: 15vh; 
@@ -59,6 +69,10 @@ body{
 
 .small_input{
     width: 5vw;
+}
+
+label{
+    text-align: center;
 }
 
 #bottom{

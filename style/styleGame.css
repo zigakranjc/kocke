@@ -21,6 +21,7 @@ body{
     margin-top: 10%;
     background-image: url(../img/table.png);
     background-position: center;
+    background-size: cover;
     border: 2px solid;
     height: 40vh;
     width: 40vw;

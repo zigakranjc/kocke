@@ -51,7 +51,7 @@ $third = $players[$thirdIndex];
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="refresh" content="2;url=index.php">
+        <!--<meta http-equiv="refresh" content="10;url=index.php">-->
         <link rel= "stylesheet" href="style/styleResult.css">
         <title>game</title>
     </head>
@@ -59,21 +59,40 @@ $third = $players[$thirdIndex];
         <div id="main">
             <div id="players">
                 <div id="second">
-                    <?php echo $players[$secondIndex]; ?><br>
-                    <?php echo $scores[$secondIndex]; ?> točk
+                        <?php echo $players[$secondIndex]; ?><br>
+                        Points: <?php echo $scores[$secondIndex]; ?> 
                 </div>
 
                 <div id="first">
-                    <?php echo $players[$winnerIndex]; ?><br>
-                    <?php echo $scores[$winnerIndex]; ?> točk
+                    <div id = "name_first">
+                        <?php echo $players[$winnerIndex]; ?><br>
+                        Points: <?php echo $scores[$winnerIndex]; ?> 
+                    </div>
                 </div>
                 
                 <div id="third">
                     <?php echo $players[$thirdIndex]; ?><br>
-                    <?php echo $scores[$thirdIndex]; ?> točk
+                    Points: <?php echo $scores[$thirdIndex]; ?> 
                 </div>
             </div>
-            <img src="img/podium.png">
+            <img src="img/podium.png" id ="table">
+            <div id="countDownDiv">
+                <p>Redirecting in <a id="countDown">10</a> seconds</p>
+            </div>
         </div>
+        <script>
+            let timeLeft = 10;
+            const countDownElement = document.getElementById('countDown');
+
+            const countDownInterval = setInterval (function(){
+                timeLeft--;
+                countDownElement.textContent = timeLeft;
+
+                if(timeLeft <= 0){
+                    clearInterval(countDownInterval);
+                    window.location.href='index.php?reset=1'
+                }
+            }, 1000);
+        </script>
     </body>
 </html>
