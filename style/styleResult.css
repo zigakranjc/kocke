@@ -30,14 +30,15 @@ body{
 }
 
 #second{
+    font-size: 13px;
     text-align: center;
     height: 20vh;
-    width: 10vw;
+    width: 12vw;
     z-index: 1;
     position: relative;
     bottom: 2vh;
     font-weight: bold;
-     background-image: url("../img/second.png");
+    background-image: url("../img/second.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -47,9 +48,10 @@ body{
 }
 
 #first{
+    font-size: 13px;
     text-align: center;
     height: 20vh;
-    width: 10vw;
+    width: 12vw;
     z-index: 1;
     position: relative;
     bottom: 6vh;
@@ -74,9 +76,10 @@ body{
 }
 
 #third{
+    font-size: 13px;
     text-align: center;
     height: 20vh;
-    width: 10vw;
+    width: 12vw;
     z-index: 1;
     position: relative;
     top: 2vh;
