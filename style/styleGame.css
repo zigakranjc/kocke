@@ -82,12 +82,10 @@ body{
     justify-content: center;
     align-items: center;
     width: 100%; 
-    border: 2px solid;
-
 }
 
 button{
-    background-color: gold;
+    background-color: yellow;
     width: 10vw;
     height: 7vh;
     text-align: center;

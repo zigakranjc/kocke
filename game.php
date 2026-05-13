@@ -138,7 +138,7 @@ $last = ($_SESSION['round'] ?? 0) - 1;
                     <button type="submit" name="action" value="reset">RESULTS</button>
                 </form>
             </div>
-        </div> <!-- konec #bottom -->
-    </div> <!-- konec #main -->
+        </div>
+    </div>
   </body>
 </html>

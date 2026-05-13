@@ -26,6 +26,9 @@
                     </div>
                 </div>
             </form>
+            <button id="aboutButton" type="button">?</button>
         </div>  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetAlert.js"></script>
     </body>   
 </html>

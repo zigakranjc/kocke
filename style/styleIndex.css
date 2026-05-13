@@ -119,3 +119,44 @@ button:hover{
     transform: scale(1.1);
 }
 
+#aboutButton{
+    height: 8vh;
+    width: 4vw;
+    font-size: 22px;
+    font-family: "Griffy", "Times New Roman", serif;
+    text-shadow: 2px 2px 5px green;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: fixed;
+    bottom: 10vh;
+    right: 7vw;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.about-popup{
+    width: 420px;
+    height: 260px;
+    padding: 0 !important;
+    border-radius: 0;
+}
+.about-text{
+    font-family: "Griffy", "Times New Roman", serif;
+    color: #2f6b3f;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.6);
+    margin-top: 50px;
+}
+.about-confirm {
+    font-family: "Griffy", "Times New Roman", serif;
+    background-color: #2f6b3f !important;   
+    color: #f4e6c8 !important;
+    border: none !important;
+}
