@@ -83,7 +83,7 @@ $last = ($_SESSION['round'] ?? 0) - 1;
                     <?php echo h($players[0] !== '' ? $players[0] : 'Igralec 1'); ?>
                 </div>
                 <div class="sum">
-                    Vsota: <?php echo (int)($_SESSION['sumTab'][0] ?? 0); ?>
+                    Points: <?php echo (int)($_SESSION['sumTab'][0] ?? 0); ?>
                 </div>
             </div>
             <div>
@@ -103,7 +103,7 @@ $last = ($_SESSION['round'] ?? 0) - 1;
                         <?php echo h($players[1] !== '' ? $players[1] : 'Igralec 2'); ?>
                     </div>
                     <div class="sum">
-                        Vsota: <?php echo (int)($_SESSION['sumTab'][1] ?? 0); ?>
+                        Points: <?php echo (int)($_SESSION['sumTab'][1] ?? 0); ?>
                     </div>
                 </div>
                 
@@ -119,7 +119,7 @@ $last = ($_SESSION['round'] ?? 0) - 1;
                     <?php echo h($players[2] !== '' ? $players[2] : 'Igralec 3'); ?>
                 </div>
                 <div class="sum">
-                    Vsota: <?php echo (int)($_SESSION['sumTab'][2] ?? 0); ?>
+                    Points: <?php echo (int)($_SESSION['sumTab'][2] ?? 0); ?>
                 </div>
             </div>
         </div>

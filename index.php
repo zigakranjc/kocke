@@ -3,6 +3,7 @@
     <head>
         <title>Kocke</title> 
         <link rel = "stylesheet" href = "style/styleIndex.css">
+        <link rel="icon" href="img/favicon.png" type="image/png">
     </head>
     <body>
         <div id="main">

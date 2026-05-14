@@ -4,6 +4,8 @@
 }
 
 body{
+    background-image: url(../img/bg3.png);
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,4 +100,5 @@ body{
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    color: #0097b2; 
 }
