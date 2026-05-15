@@ -34,7 +34,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12vw;
+    width: 16vw;
     height: 20vh; 
     background-image: url(../img/player.png);
     background-position: center;
@@ -57,7 +57,7 @@ label{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 7vw;
+    width: 8vw;
     height: 21vh; 
     background-image: url(../img/player.png);
     background-position: center;
@@ -68,7 +68,7 @@ label{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12vw;
+    width: 16vw;
     height: 20vh; 
     background-image: url(../img/player.png);
     background-position: center;

@@ -4,13 +4,7 @@ $roll_count = $_SESSION['roll_count'] ?? 1;
 $round = $_SESSION['round'] ?? 0;
 function h(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 
-// reset
-if (($_POST['action'] ?? '') === 'reset') {
-  session_unset();
-  session_destroy();
-  header("Location: index.php");
-  exit;
-}
+
 
 // če so playeri in število metov nastavljeni, se ustvari session
 if (isset($_POST['player1'], $_POST['player2'], $_POST['player3'], $_POST['roll_count'])) {
@@ -72,8 +66,9 @@ $last = ($_SESSION['round'] ?? 0) - 1;
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Kocke</title>
+    <title><Dice-game></Dice-game></title>
     <link rel="stylesheet" href="style/styleGame.css">
+    <link rel="icon" href="img/favicon.png" type="image/png">
   </head>
   <body>
     <div id="main">

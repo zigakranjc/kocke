@@ -9,17 +9,29 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
+}
+
+#fireworks{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(70vw, 900px);
+    height: auto;
+    pointer-events: none;
 }
 
 #main{
     height: 10vh;
-    margin-top: 30vh;
     width: 30vw;
+    position: relative;
 }
 
-#table{
+#podium{
     width: 30vw;
     margin-top: -15vh;
+    position: relative;
 }
 
 #players{
@@ -29,6 +41,8 @@ body{
     justify-content: center;
     margin-bottom: -17vh;
     height: 10vh;
+    position: relative;
+    z-index: 2;
 }
 
 #second{
@@ -101,4 +115,6 @@ body{
     justify-content: center;
     font-weight: bold;
     color: #0097b2; 
+    position: relative;
+    z-index: 2;
 }

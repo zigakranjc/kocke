@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Kocke</title> 
+        <title>Dice</title> 
         <link rel = "stylesheet" href = "style/styleIndex.css">
         <link rel="icon" href="img/favicon.png" type="image/png">
     </head>
